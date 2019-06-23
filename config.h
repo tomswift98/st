@@ -81,7 +81,7 @@ char *termname = "st-256color";
  *
  *	stty tabs
  */
-unsigned int tabspaces = 8;
+unsigned int tabspaces = 4;
 
 /* bg opacity */
 float alpha = 0.92;
@@ -198,7 +198,7 @@ static MouseShortcut mshortcuts[] = {
 };
 
 /* Internal keyboard shortcuts. */
-#define MODKEY Mod1Mask
+#define MODKEY ControlMask
 #define TERMMOD (Mod1Mask|ShiftMask)
 
 MouseKey mkeys[] = {
@@ -236,8 +236,8 @@ static Shortcut shortcuts[] = {
 	{ MODKEY,               XK_p,           selpaste,       {.i =  0} },
 	{ MODKEY,               XK_Num_Lock,    numlock,        {.i =  0} },
 	{ MODKEY,               XK_Control_L,   iso14755,       {.i =  0} },
-	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
-	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
+	{ MODKEY,  	        XK_k,  		kscrollup,      {.i = -1} },
+	{ MODKEY,               XK_j,   	kscrolldown,    {.i = -1} },
 	{ MODKEY,               XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ MODKEY,               XK_Page_Down,   kscrolldown,    {.i = -1} },
 	{ MODKEY,               XK_k,           kscrollup,      {.i =  1} },
@@ -339,12 +339,10 @@ static Key key[] = {
 	{ XK_KP_Insert,     ControlMask,    "\033[2;5~",    +1,    0},
 	{ XK_KP_Insert,     XK_ANY_MOD,     "\033[4h",      -1,    0},
 	{ XK_KP_Insert,     XK_ANY_MOD,     "\033[2~",      +1,    0},
-	{ XK_KP_Delete,     ControlMask,    "\033[M",       -1,    0},
-	{ XK_KP_Delete,     ControlMask,    "\033[3;5~",    +1,    0},
 	{ XK_KP_Delete,     ShiftMask,      "\033[2K",      -1,    0},
 	{ XK_KP_Delete,     ShiftMask,      "\033[3;2~",    +1,    0},
 	{ XK_KP_Delete,     XK_ANY_MOD,     "\033[P",       -1,    0},
-	{ XK_KP_Delete,     XK_ANY_MOD,     "\033[3~",      +1,    0},
+	{ XK_KP_Delete,     XK_ANY_MOD,     "\177",         +1,    0},
 	{ XK_KP_Multiply,   XK_ANY_MOD,     "\033Oj",       +2,    0},
 	{ XK_KP_Add,        XK_ANY_MOD,     "\033Ok",       +2,    0},
 	{ XK_KP_Enter,      XK_ANY_MOD,     "\033OM",       +2,    0},

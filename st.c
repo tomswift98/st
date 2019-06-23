@@ -2661,6 +2661,14 @@ tresize(int col, int row)
 		}
 	}
 
+	for (i = 0; i < HISTSIZE; i++) {
+		term.hist[i] = xrealloc(term.hist[i], col * sizeof(Glyph));
+		for (j = mincol; j < col; j++) {
+			term.hist[i][j] = term.c.attr;
+			term.hist[i][j].u = ' ';
+		}
+	}
+
 	/* resize each row to new width, zero-pad if needed */
 	for (i = 0; i < minrow; i++) {
 		term.line[i] = xrealloc(term.line[i], col * sizeof(Glyph));
